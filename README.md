@@ -7,7 +7,7 @@ Examples :
 ---------
 
 HTML:
----
+```
 <!doctype html>
 <html lang="en">
 <head>
@@ -36,4 +36,4 @@ HTML:
     </script>
 </body>
 </html>
----
+```
