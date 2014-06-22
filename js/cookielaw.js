@@ -8,28 +8,24 @@
      * @param (object) options - A list of options for the plugin
      */
      $[pluginName] = function (element, options) {
-
       this.options = $.extend({}, options);
-      this.$cookieLawBlock = $(element); // Css Class ".cookie-block
-
+      this.$cookieLawBlock = $(element); // Css Class ".cookie-block"
       // Dom elements
       this.$closeBtn = this.$cookieLawBlock.find('.btn a');
-
       // init plugin
       return this._CookieLaw();
-
     };
     $[pluginName].prototype = {
       _CookieLaw: function () {
-        var t = this;
+        var t = this,
+            cookieTimeLeft = 334; // 334 days or 11 months from now (The current time)
+        var initEntryPoint = function () {
+          (getCookie('cookielaw')) ? t.$cookieLawBlock.hide(): showHideBlock();;
+        };
         var showHideBlock = function () {
-          var cookieTimeLeft = 334, // 334 days or 11 months from now
-          cookieEnd = new Date(),
-          cookieExpires = new Date(cookieEnd.getFullYear(), cookieEnd.getMonth() + 11, 1);
           // Hide block & Set cookie
           t.$closeBtn.click(function () {
-            t.$cookieLawBlock.hide();
-
+            t.$cookieLawBlock.addClass('hidden');
             setCookie('cookielaw', 'accepted', cookieTimeLeft);
           });
         };
@@ -69,11 +65,8 @@
           ((domain) ? ';domain=' + domain : '') +
           ';expires=Thu, 01-Jan-1970 00:00:01 GMT';
         };
-        var initEntryPoint = function () {
-          (getCookie('cookielaw')) ? t.$cookieLawBlock.hide(): showHideBlock();;
-        };
-          // Entry point
-          initEntryPoint();
+        // Entry point
+        initEntryPoint();
       }
     };
     // Building the plugin
