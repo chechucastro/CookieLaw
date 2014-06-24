@@ -2,6 +2,7 @@
   'use strict';
   var pluginName = 'cookielaw';
   $[pluginName] = (function () {
+
     /**
      * Plugin Constructor. This function build the basic object for the plugin
      * @param (object) element - The jQuery or Zepto DOM element
@@ -15,10 +16,11 @@
       // init plugin
       return this._CookieLaw();
     };
+
     $[pluginName].prototype = {
       _CookieLaw: function () {
         var t = this,
-            cookieTimeLeft = 334; // 334 days or 11 months from now (The current time)
+            cookieTimeLeft = 395; // 11 months from now (The current time)
         var initEntryPoint = function () {
           (getCookie('cookielaw')) ? t.$cookieLawBlock.hide(): showHideBlock();;
         };

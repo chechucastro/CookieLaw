@@ -2,6 +2,7 @@ body
     margin 0
     padding 0
 
+/* Cookie block starts here */
 .cookie-block
     background #ebf3aa
     font-size 11px
@@ -11,21 +12,71 @@ body
     width 100%
     text-align center
     display table
-    height 35px
+
+    @font-face
+        font-family "cookiefont"
+        src:url("fonts/cookiefont.eot")
+        src:url("fonts/cookiefont.eot?#iefix") format("embedded-opentype"),
+        url("fonts/cookiefont.woff") format("woff"),
+        url("fonts/cookiefont.ttf") format("truetype"),
+        url("fonts/cookiefont.svg#cookiefont") format("svg")
+        font-weight: normal
+        font-style: normal
+
+    [data-icon]:before
+        font-family "cookiefont" !important
+        content attr(data-icon)
+        font-style normal !important
+        font-weight normal !important
+        font-variant normal !important
+        text-transform none !important
+        speak none
+        line-height: 1
+        -webkit-font-smoothing: antialiased
+        -moz-osx-font-smoothing: grayscale
+
+    [class^="icon-"]:before
+    [class*=" icon-"]:before
+        font-family "cookiefont" !important
+        font-style normal !important
+        font-weight normal !important
+        font-variant normal !important
+        text-transform none !important
+        speak none
+        line-height 1
+        -webkit-font-smoothing antialiased
+        -moz-osx-font-smoothing: grayscale
+
+    .icon-info:before
+        content "i"
+
+    // Custom color
+    [data-icon="i"]
+        color black
+        font-size 1.5rem
+        vertical-align middle
+        line-height 2rem
+        padding 0 15px
+        display inline-block
+        margin 6px 5px 0
+
     > div
         display table-cell
         width 50%
     .message
         width 95%
-
     .btn
-        width 4%
         line-height 30px
         font-weight normal
         font-size xx-small
         background #ccc
-        color white
+        color #fff
         height 100%
+        display table-cell
+        vertical-align middle
+        min-width 50px
+
+
         a
             display block
             font-size 15px
@@ -36,7 +87,7 @@ body
         color grey
         font-weight normal
         text-decoration none
-    ahover
+    a:hover
         color orange
 
 .visible
