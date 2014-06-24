@@ -11,15 +11,15 @@ HTML:
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Cookielaw</title>
+  <meta charset="UTF-8">
+  <title>Cookielaw</title>
     <link rel="stylesheet" href="css/cookielaw.min.css">
 </head>
 <body>
+
     <!-- Cookie law block -->
     <div class="cookie-block">
-        <i class="icon i"></i>
-        <div class="message">En poursuivant votre navigation sans modifier vos paramètres de cookies, vous acceptez l'utilisation des cookies pour disposer de services et d'offres adaptés à vos centres d'intérêts.
+        <div class="message"><span data-icon="i"></span>En poursuivant votre navigation sans modifier vos paramètres de cookies, vous acceptez l'utilisation des cookies pour disposer de services et d'offres adaptés à vos centres d'intérêts.
             <a href="#">
                 <strong>Pour gérer et modifier ces paramètres, cliquez ici.</strong>
             </a>
@@ -44,34 +44,32 @@ JAVASCRIPT :
   'use strict';
   var pluginName = 'cookielaw';
   $[pluginName] = (function () {
+
     /**
      * Plugin Constructor. This function build the basic object for the plugin
      * @param (object) element - The jQuery or Zepto DOM element
      * @param (object) options - A list of options for the plugin
      */
      $[pluginName] = function (element, options) {
-
       this.options = $.extend({}, options);
-      this.$cookieLawBlock = $(element); // Css Class ".cookie-block
-
+      this.$cookieLawBlock = $(element); // Css Class ".cookie-block"
       // Dom elements
       this.$closeBtn = this.$cookieLawBlock.find('.btn a');
-
       // init plugin
       return this._CookieLaw();
-
     };
+
     $[pluginName].prototype = {
       _CookieLaw: function () {
-        var t = this;
+        var t = this,
+            cookieTimeLeft = 395; // 11 months from now (The current time)
+        var initEntryPoint = function () {
+          (getCookie('cookielaw')) ? t.$cookieLawBlock.hide(): showHideBlock();;
+        };
         var showHideBlock = function () {
-          var cookieTimeLeft = 334, // 334 days or 11 months from now
-          cookieEnd = new Date(),
-          cookieExpires = new Date(cookieEnd.getFullYear(), cookieEnd.getMonth() + 11, 1);
           // Hide block & Set cookie
           t.$closeBtn.click(function () {
-            t.$cookieLawBlock.hide();
-
+            t.$cookieLawBlock.addClass('hidden');
             setCookie('cookielaw', 'accepted', cookieTimeLeft);
           });
         };
@@ -111,11 +109,8 @@ JAVASCRIPT :
           ((domain) ? ';domain=' + domain : '') +
           ';expires=Thu, 01-Jan-1970 00:00:01 GMT';
         };
-        var initEntryPoint = function () {
-          (getCookie('cookielaw')) ? t.$cookieLawBlock.hide(): showHideBlock();;
-        };
-          // Entry point
-          initEntryPoint();
+        // Entry point
+        initEntryPoint();
       }
     };
     // Building the plugin
@@ -141,4 +136,5 @@ $.fn[pluginName] = function (options) {
 };
 
 })(window.Zepto || window.jQuery);
+
 ```
