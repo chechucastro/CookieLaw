@@ -1,7 +1,7 @@
 Cookielaw plugin
 ================================
 
-Zepto and jQuery Plugin to insert a cookie in order to inform the visitor about the cookies inserted in his/her pc
+ZEPTO OR JQUERY PLUGIN : This plugin checks a cookie value and hides or shows an html block in order to inform the visitor about the new European cookie law policy.
 
 Examples :
 ---------
