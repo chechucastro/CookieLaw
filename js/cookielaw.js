@@ -26,7 +26,8 @@
         };
         var showHideBlock = function () {
           // Hide block & Set cookie
-          t.$closeBtn.click(function () {
+          t.$closeBtn.click(function (e) {
+            e.preventDefault();
             t.$cookieLawBlock.addClass('hidden');
             setCookie('cookielaw', 'accepted', cookieTimeLeft);
           });
